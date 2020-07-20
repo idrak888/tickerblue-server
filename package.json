@@ -1,0 +1,22 @@
+{
+  "name": "tickeroid-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Idrak",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chromium": "^2.1.1",
+    "express": "^4.17.1",
+    "puppeteer": "^2.1.1"
+  },
+  "engines": {
+    "node": "v10.16.3"
+  }
+}
