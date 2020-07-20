@@ -18,14 +18,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-    extract().then(result => {
-        res.send(result);
-    }).catch(e => {
-        console.log(e);
-    });
-});
-
 app.get("/tickeroid/fundamentals", (req, res) => {
 	const tickerSymbol = req.body.tickerSymbol;
 
