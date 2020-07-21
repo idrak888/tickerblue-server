@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.get("/tickerblue/fundamentals", (req, res) => {
+app.post("/tickerblue/fundamentals", (req, res) => {
 	const tickerSymbol = req.body.tickerSymbol;
 
 	extractFundamentals(`${tickerSymbol} stock news`).then(result => {
@@ -28,7 +28,7 @@ app.get("/tickerblue/fundamentals", (req, res) => {
 	});
 });
 
-app.get("/tickerblue/technicals", (req , res) => {
+app.post("/tickerblue/technicals", (req , res) => {
 	const tickerSymbol = req.body.tickerSymbol;
 	
 	extractTechnicals(tickerSymbol).then(result => {
