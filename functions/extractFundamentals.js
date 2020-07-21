@@ -7,30 +7,27 @@ const extractFundamentals = async searchParams => {
         ] 
     });
 
-    const params = encodeURI(searchParams);
+    var params = encodeURI(searchParams);
 
     const page = await browser.newPage();
+    
+    await page.goto(`https://news.google.com/search?q=${params}`);
 
-    await page.goto(`https://www.google.com/search?q=${params}`);
-    await page.click("#hdtb-msb-vis > div:nth-child(2) > a");
-    
-    await page.screenshot({path: "example.png"});
-    
     const result = await page.evaluate(() => {
-        const elements = document.querySelectorAll("#rso > div > g-card > div > div > div.dbsr > a");
+        const elements = document.querySelectorAll("#yDmH0d > c-wiz > div > div.FVeGwb.CVnAc.Haq2Hf.bWfURe > div.ajwQHc.BL5WZb.RELBvb > div > main > c-wiz > div.lBwEZb.BL5WZb.xP6mwf > div > div > article");
         const articles = [];
-
-        for (let el of elements) {
-            const title = el.querySelector("div > div.hI5pFf > div.JheGif.nDgy9d").textContent;
-            const url = el.getAttribute("href");
+        
+        for (let i=0;i<10;i++) {
+            var title = elements[i].querySelector("h3").textContent;
+            var url = elements[i].querySelector("h3 > a").getAttribute("href");
+            url = url.replace(".", "https://news.google.com");
 
             articles.push({title, url});
         }
 
-        console.log(articles);
         return {
             articles
-        };
+        }
     }).catch(e => {
         console.log(e);
     });

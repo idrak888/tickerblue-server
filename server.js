@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 app.post("/tickerblue/fundamentals", (req, res) => {
 	const tickerSymbol = req.body.tickerSymbol;
 
-	extractFundamentals(`${tickerSymbol} stock news`).then(result => {
+	extractFundamentals(tickerSymbol).then(result => {
 		res.send(result);
 	}).catch(e => {
 		console.log(e);
