@@ -1,6 +1,8 @@
 const express = require('express');
 const { extractFundamentals } = require('./functions/extractFundamentals');
 const { extractTechnicals } = require('./functions/extractTechnicals');
+const { extractCompanyLogo } = require('./functions/extractCompanyLogo');
+const { extractCompanyWebsite } = require('./functions/extractCompanyWebsite');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -24,7 +26,7 @@ app.post("/tickerblue/fundamentals", (req, res) => {
 	extractFundamentals(tickerSymbol).then(result => {
 		res.send(result);
 	}).catch(e => {
-		console.log(e);
+		res.send(e);
 	});
 });
 
@@ -34,8 +36,28 @@ app.post("/tickerblue/technicals", (req , res) => {
 	extractTechnicals(tickerSymbol).then(result => {
 		res.send(result);
 	}).catch(e => {
-		console.log(e);
+		res.send(e);
 	});
+});
+
+app.post("/tickerblue/company_logo", (req, res) => {
+	const companyName = req.body.companyName;
+
+	extractCompanyLogo(companyName).then(result => {
+		res.send(result);
+	}).catch(e => {
+		res.send(e);
+	})
+});
+
+app.post("/tickerblue/company_website", (req, res) => {
+	const companyName = req.body.companyName;
+
+	extractCompanyWebsite(companyName).then(result => {
+		res.send(result);
+	}).catch(e => {
+		res.send(e);
+	})
 });
 
 app.listen(port, () => {
