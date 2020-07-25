@@ -23,10 +23,10 @@ app.use(bodyParser.json());
 app.post("/tickerblue/fundamentals", (req, res) => {
 	const tickerSymbol = req.body.tickerSymbol;
 
-	extractFundamentals(tickerSymbol).then(result => {
+	extractFundamentals(`${tickerSymbol} stock news`).then(result => {
 		res.send(result);
 	}).catch(e => {
-		res.send(e);
+		res.send(status);
 	});
 });
 
@@ -36,7 +36,7 @@ app.post("/tickerblue/technicals", (req , res) => {
 	extractTechnicals(tickerSymbol).then(result => {
 		res.send(result);
 	}).catch(e => {
-		res.send(e);
+		res.send(status);
 	});
 });
 
@@ -46,7 +46,7 @@ app.post("/tickerblue/company_logo", (req, res) => {
 	extractCompanyLogo(companyName).then(result => {
 		res.send(result);
 	}).catch(e => {
-		res.send(e);
+		res.send(status);
 	})
 });
 
@@ -56,7 +56,7 @@ app.post("/tickerblue/company_website", (req, res) => {
 	extractCompanyWebsite(companyName).then(result => {
 		res.send(result);
 	}).catch(e => {
-		res.send(e);
+		res.send(status);
 	})
 });
 
